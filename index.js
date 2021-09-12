@@ -5,7 +5,7 @@ import ReadLine from 'readline';
 const downloadImages = async (pageUrl, altTextMatcher, startingIndexString) => {
   const startingIdx = startingIndexString ? parseInt(startingIndexString, 10) : undefined;
   const urlRegex = new RegExp(
-    `(?<=img src=")https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*(?=" alt='${altTextMatcher}))`,
+    `(?<=img src=")https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*(?=" alt=('|")${altTextMatcher}))`,
     'g',
   );
   const comicResponse = await fetch(pageUrl);
